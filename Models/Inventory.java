@@ -11,6 +11,25 @@ public class Inventory {
     private static final ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static final ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
+
+    /**
+     * Function to help keep track of the next partID value
+     * Used when Adding a new part
+     */
+    public static int getNextPartID()
+    {
+        int maxID = 0;
+        for(Part part : allParts)
+        {
+            int partID = part.getId();
+            if (partID > maxID)
+            {
+                maxID = partID;
+            }
+        }
+        return maxID;
+    }
+
     /**
      * addPart(newPart:Part):void
      * @param newPart
