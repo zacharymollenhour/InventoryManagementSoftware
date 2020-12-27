@@ -13,8 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
-import static ims.Main.fixAlertDisplay;
-import static ims.Main.loadView;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 /**
  * Main Screen Controller
  *
@@ -52,4 +54,8 @@ public class MainController implements Initializable {
     @FXML
     private Label ProductTableProcurator;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
