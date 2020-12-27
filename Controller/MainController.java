@@ -1,5 +1,5 @@
 package Controller;
-
+import Models.Product;
 import javafx.fxml.FXML;
 import Models.Part;
 import javafx.fxml.Initializable;
@@ -34,7 +34,7 @@ public class MainController implements Initializable {
     @FXML
     private TableView <Product> ProductTableView;
     @FXML
-    private TableView <Parts> PartsTableView;
+    private TableView <Part> PartsTableView;
     @FXML
     private TableColumn <Part, Double> PartPriceColumn;
     @FXML
@@ -51,8 +51,5 @@ public class MainController implements Initializable {
     private Label PartsTableProcurator;
     @FXML
     private Label ProductTableProcurator;
-    @FXML
-    private TableColumn <Parts, Double> PartsPriceTable;
-    @FXML
-    private TableColumn <Product, Integer> PartsPriceTable;
+
 }
