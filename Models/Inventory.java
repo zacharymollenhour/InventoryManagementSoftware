@@ -29,8 +29,58 @@ public class Inventory {
                 maxID = partID;
             }
         }
-        return maxID;
+        return maxID + 1;
     }
+    public static int getNextProductID() {
+        int maxID = 0;
+        for (Product product : allProducts) {
+            int id = product.getID();
+            if (id > maxID) {
+                maxID = id;
+            }
+        }
+        return maxID + 1;
+    }
+    public static ObservableList<Product> getFilteredProducts(String searchQuery) {
+        return getFilteredProducts(searchQuery, false);
+    }
+
+    /**
+     * Filters the Products Inventory by a user-provided string.
+     * Part names and IDs are matched in a case-insensitive fashion and are stored in a static variable.
+     * @param searchQuery
+     * @param reset
+     */
+    public static ObservableList<Product> getFilteredProducts(String searchQuery, boolean reset) {
+
+        if (!reset && searchQuery.equals(lastProductSearch)) {
+            return filteredProducts;
+        }
+
+        filteredProducts.clear();
+        // If the search query is a positive integer, we want to lookup a Product whose ID matches.
+        // However, it's possible that the product name also has digits, so we want to return those as well.
+        if (searchQuery.matches("\\d+")) {
+            int lookupId = Integer.parseInt(searchQuery);
+            Product foundProduct = Inventory.lookupProduct(lookupId);
+            if (foundProduct != null) {
+                filteredProducts.add(foundProduct);
+            }
+            ObservableList<Product> foundProducts = Inventory.lookupProduct(searchQuery);
+
+            foundProducts.removeIf(p -> (p.getID() == lookupId));
+            filteredProducts.addAll(foundProducts);
+        } else {
+            filteredProducts = Inventory.lookupProduct(searchQuery);
+        }
+
+
+        lastProductSearch = searchQuery;
+        return filteredProducts;
+    }
+
+
+
 
     /**
      * addPart(newPart:Part):void
@@ -238,4 +288,6 @@ public class Inventory {
     {
         return allProducts;
     }
+
+
 }

@@ -99,7 +99,7 @@ public class MainController implements Initializable {
      */
     private void restoreProductTable(boolean reset) {
         String searchInput = ProductSearchBar.getText();
-        ProductTableView.setItems(Inventory.getFilteredParts(searchInput);
+        ProductTableView.setItems(Inventory.getFilteredProducts(searchInput,reset));
         if (searchInput.isEmpty()) {
             ProductTableProcurator.setText("Click Add to add a new product.");
         } else {
@@ -189,8 +189,8 @@ public class MainController implements Initializable {
     @FXML
     public void onActionAddProduct(ActionEvent actionEvent) throws IOException {
         stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader loader = loadView(stage, "/view/EditProductView.fxml");
-        EditProductController editCtrl = loader.getController();
+        FXMLLoader loader = LoadView(stage, "/view/EditProductView.fxml");
+        EditProduct editCtrl = loader.getController();
         editCtrl.startAdd();
     }
 
@@ -211,9 +211,9 @@ public class MainController implements Initializable {
         }
 
         stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader loader = loadView(stage, "/view/EditProductView.fxml");
+        FXMLLoader loader = LoadView(stage, "/view/EditProductView.fxml");
         EditProduct editCtrl = loader.getController();
-        editCtrl.startEdit(productTableView.getSelectionModel().getSelectedIndex(), productTableView.getSelectionModel().getSelectedItem());
+        editCtrl.productEdit(ProductTableView.getSelectionModel().getSelectedIndex(), ProductTableView.getSelectionModel().getSelectedItem());
     }
 
 
@@ -248,6 +248,11 @@ public class MainController implements Initializable {
             restoreProductTable(true);
         }
     }
+    @FXML
+    public void onActionExit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
     /**
      * Initialize
      * @param url
