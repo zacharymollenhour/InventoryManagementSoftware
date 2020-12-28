@@ -10,8 +10,10 @@ public class Inventory {
      */
     private static final ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static final ObservableList<Product> allProducts = FXCollections.observableArrayList();
-
-
+    private static String lastPartSearch = "";
+    private static String lastProductSearch = "";
+    private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+    private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
     /**
      * Function to help keep track of the next partID value
      * Used when Adding a new part
@@ -90,6 +92,49 @@ public class Inventory {
         //If above is not triggered we will return a null value
         //Since no product exists
         return null;
+    }
+
+    /**
+     * Filters the Parts Inventory by a user-provided string.
+     * Part names and IDs are matched in a case-insensitive fashion and are stored in a static variable.
+     * @param searchQuery
+     */
+    public static ObservableList<Part> getFilteredParts(String searchQuery) {
+        return getFilteredPartList(searchQuery, false);
+    }
+
+    /**
+     * Filters the Parts Inventory by a user-provided string.
+     * Part names and IDs are matched in a case-insensitive fashion and are stored in a static variable.
+     * @param reset
+     * @param searchQuery
+     */
+    public static ObservableList<Part> getFilteredPartList(String searchQuery, boolean reset) {
+        // If we get a query for the same string twice in a row, no extra work needs to be done.
+        if (!reset && searchQuery.equals(lastPartSearch)) {
+            return filteredParts;
+        }
+
+        filteredParts.clear();
+
+
+        if (searchQuery.matches("\\d+")) {
+            int lookupId = Integer.parseInt(searchQuery);
+            Part foundPart = Inventory.lookupPart(lookupId);
+            if (foundPart != null) {
+                filteredParts.add(foundPart);
+            }
+            ObservableList<Part> foundParts = Inventory.lookupPart(searchQuery);
+            // There's a chance that lookupPart will include the Part found earlier, so ensure it's not duplicated.
+            foundParts.removeIf(p -> (p.getId() == lookupId));
+            filteredParts.addAll(foundParts);
+        } else {
+            filteredParts = Inventory.lookupPart(searchQuery);
+        }
+
+        // Store the search string associated with the current state of filteredParts
+        lastPartSearch = searchQuery;
+        return filteredParts;
     }
 
     /**

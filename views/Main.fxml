@@ -39,7 +39,7 @@
                             <Font name="System Bold" size="13.0"/>
                         </font>
                     </Label>
-                    <TextField fx:id="PartSearchBar" onKeyReleased="#onKeySearchPart"
+                    <TextField fx:id="PartSearchBar" onKeyReleased="#OnPartSearch"
                                promptText="Search by Part ID or Name" AnchorPane.bottomAnchor="0.0"
                                AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
                 </AnchorPane>
@@ -61,9 +61,9 @@
                     <VBox.margin>
                         <Insets right="16.0" top="8.0"/>
                     </VBox.margin>
-                    <Button mnemonicParsing="false" onAction="#onActionAddPart" text="Add"/>
-                    <Button mnemonicParsing="false" onAction="#onActionModifyPart" text="Modify"/>
-                    <Button mnemonicParsing="false" onAction="#onActionDeletePart" text="Delete"/>
+                    <Button mnemonicParsing="false" onAction="#onAddPartClick" text="Add"/>
+                    <Button mnemonicParsing="false" onAction="#onModifyPartClick" text="Modify"/>
+                    <Button mnemonicParsing="false" onAction="#onDeletePartClick" text="Delete"/>
                 </HBox>
             </VBox>
             <VBox style="-fx-border-width: 2; -fx-border-color: #3f3f3f; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
@@ -80,7 +80,7 @@
                             <Font name="System Bold" size="13.0"/>
                         </font>
                     </Label>
-                    <TextField fx:id="ProductSearchBar" onKeyReleased="#onKeySearchProduct"
+                    <TextField fx:id="ProductSearchBar" onKeyReleased="#onProductSearch"
                                promptText="Search by Product ID or Name" AnchorPane.bottomAnchor="0.0"
                                AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
                 </AnchorPane>
@@ -104,7 +104,7 @@
                     </VBox.margin>
                     <Button mnemonicParsing="false" onAction="#onActionAddProduct" text="Add"/>
                     <Button mnemonicParsing="false" onAction="#onActionModifyProduct" text="Modify"/>
-                    <Button mnemonicParsing="false" onAction="#onActionDeleteProduct" text="Delete"/>
+                    <Button mnemonicParsing="false" onAction="#onDeleteProductClick" text="Delete"/>
                 </HBox>
             </VBox>
         </HBox>
