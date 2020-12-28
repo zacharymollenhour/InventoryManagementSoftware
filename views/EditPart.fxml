@@ -29,12 +29,12 @@
                     <Insets right="48.0" />
                 </padding>
             </Label>
-            <RadioButton fx:id="InHouseToggle" mnemonicParsing="false" onAction="#onPartSourceClick" text="In-House">
+            <RadioButton fx:id="InHouseToggle" mnemonicParsing="false" onAction="#HandlePartSourceChange" text="In-House">
                 <toggleGroup>
                     <ToggleGroup fx:id="PartSourceSelection" />
                 </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="OutsourcedToggle" mnemonicParsing="false" onAction="#onPartSourceClick" text="Outsourced" toggleGroup="$PartSourceSelection" />
+            <RadioButton fx:id="OutsourcedToggle" mnemonicParsing="false" onAction="#HandlePartSourceChange" text="Outsourced" toggleGroup="$PartSourceSelection" />
         </HBox>
     </top>
     <center>
@@ -61,7 +61,7 @@
             <Label text="Inv" GridPane.rowIndex="2" />
             <Label text="Price/Cost" GridPane.rowIndex="3" />
             <Label text="Max" GridPane.rowIndex="4" />
-            <Label fx:id="AltLabel" text="Machine ID" GridPane.rowIndex="5" />
+            <Label fx:id="VersatileLabel" text="Machine ID" GridPane.rowIndex="5" />
             <Label text="Min" GridPane.columnIndex="2" GridPane.rowIndex="4">
                 <padding>
                     <Insets left="16.0" />
@@ -72,14 +72,14 @@
             <TextField fx:id="PartStock" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="PartPrice" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="PartMax" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="AlternativeInputField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="VersatileInputField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="PartMin" GridPane.columnIndex="3" GridPane.rowIndex="4" />
         </GridPane>
     </center>
     <bottom>
         <HBox alignment="CENTER_RIGHT" spacing="16.0">
-            <Button mnemonicParsing="false" onAction="#onPartSaveClick" text="Save" />
-            <Button mnemonicParsing="false" onAction="#onPartCancelClick" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#HandlePartSave" text="Save" />
+            <Button mnemonicParsing="false" onAction="#HandlePartCancel" text="Cancel" />
             <BorderPane.margin>
                 <Insets right="48.0" top="8.0" />
             </BorderPane.margin>
